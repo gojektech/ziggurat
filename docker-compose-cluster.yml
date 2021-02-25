@@ -35,7 +35,6 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_BROKER_ID: 1
-      SOCKET_REQUEST_MAX_BYTES: 5000000000
     volumes:
       - /tmp/data/kafka1/data:/var/lib/kafka/data
     depends_on:
@@ -55,7 +54,6 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_BROKER_ID: 2
-      SOCKET_REQUEST_MAX_BYTES: 5000000000
     volumes:
       - /tmp/data/kafka2/data:/var/lib/kafka/data
     depends_on:
@@ -75,7 +73,6 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
       KAFKA_BROKER_ID: 3
-      SOCKET_REQUEST_MAX_BYTES: 50000000000
 
     volumes:
       - /tmp/data/kafka3/data:/var/lib/kafka/data
