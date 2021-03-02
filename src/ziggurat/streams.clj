@@ -33,6 +33,8 @@
    :oldest-processed-message-in-s      604800
    :changelog-topic-replication-factor 3
    :default-api-timeout-ms-config      60000
+   :retries                             10
+   :retry-backoff-ms                   60000
    :session-timeout-ms-config          10000
    :consumer-type                      :default
    :default-key-serde                  "org.apache.kafka.common.serialization.Serdes$ByteArraySerde"
@@ -79,7 +81,9 @@
                            value-deserializer-encoding
                            deserializer-encoding
                            session-timeout-ms-config
-                           default-api-timeout-ms-config]}]
+                           default-api-timeout-ms-config
+                           retries
+                           retry-backoff-ms]}]
   (validate-auto-offset-reset-config auto-offset-reset-config)
   (doto (Properties.)
     (.put StreamsConfig/APPLICATION_ID_CONFIG application-id)
@@ -93,6 +97,8 @@
     (.put StreamsConfig/REPLICATION_FACTOR_CONFIG (int changelog-topic-replication-factor))
     (.put ConsumerConfig/AUTO_OFFSET_RESET_CONFIG auto-offset-reset-config)
     (.put ConsumerConfig/SESSION_TIMEOUT_MS_CONFIG (int session-timeout-ms-config))
+    (.put StreamsConfig/RETRIES_CONFIG (int retries))
+    (.put StreamsConfig/RETRY_BACKOFF_MS_CONFIG (int retry-backoff-ms))
     (.put ConsumerConfig/DEFAULT_API_TIMEOUT_MS_CONFIG (int default-api-timeout-ms-config))
     (set-upgrade-from-config upgrade-from)
     (set-encoding-config key-deserializer-encoding value-deserializer-encoding deserializer-encoding)))

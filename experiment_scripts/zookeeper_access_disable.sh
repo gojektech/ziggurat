@@ -6,8 +6,8 @@ container_id=`docker ps -aqf "name=ziggurat_kafka${brokerid}_1"`
 
 echo "Disabling zookeeper access on broker kafka${brokerid}"
 
-docker exec -it  $container_id /bin/bash -c  "apt-get update && apt-get install -y iptables && iptables -A INPUT -s ziggurat_zookeeper_1.ziggurat_default -j DROP"
-
+#docker exec -it  $container_id /bin/bash -c  "apt-get update && apt-get install -y iptables && iptables -A INPUT -s ziggurat_zookeeper_1.ziggurat_default -j DROP"
+docker exec -it  $container_id /bin/bash -c  "iptables -A INPUT -s ziggurat_zookeeper_1.ziggurat_default -j DROP"
 
 
 
